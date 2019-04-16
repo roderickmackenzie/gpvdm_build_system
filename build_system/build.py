@@ -38,33 +38,21 @@ sys.path.append('./build_system/')
 import os
 import locale
 import argparse
-
-from system_install import system_install_menu
-from deb import make_deb
-from dnf_install import dnf_install
-
-
-#	sys.exit()
-
 import platform
+
+
+from cal_path import build_setup_paths
 
 from package_menu import package_menu
 from compile_menu import compile_menu
-from buildpackage import buildpackage_menu
-from to_web import rpm_to_web
-from to_web import package_to_lib
-from build_rpm import make_rmp_dir
-from build_paths import build_setup_paths
+from system_install import system_install_menu
 
 build_setup_paths()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--text", help="Text mode", action='store_true')
-parser.add_argument("--buildlinuxpackage", help="Build rpm or deb", action='store_true')
-
 
 args = parser.parse_args()
-
 
 if args.text:
 	from menu import Dialog
@@ -74,35 +62,9 @@ else:
 	except:
 		from menu import Dialog
 
-hpc=False
-win=False
-usear=True
 
 # You may want to use 'autowidgetsize=True' here (requires pythondialog >= 3.1)
 d = Dialog(dialog="dialog")
-#dnf_install(d,["gnuplot"])
-#sys.exit(0)
-
-if args.buildlinuxpackage:
-	from publish import publish_src
-	ret=platform.dist()
-	distro=ret[0]
-	rel=ret[1]
-	if distro=="fedora":
-		publish_src(None,publication_mode="gpl_distro")
-		make_rmp_dir(None)
-		package_to_lib()
-		#rpm_to_web(None)
-	elif distro=="Ubuntu":
-		publish_src(None,distro="debian",publication_mode="gpl_distro")
-		make_deb(None)
-	elif distro=="debian":
-		publish_src(None,distro="debian",publication_mode="gpl_distro")
-		make_deb(None)
-	else:
-		print("distro not known",distro)
-	
-	sys.exit(0)
 
 # Dialog.set_background_title() requires pythondialog 2.13 or later
 d.set_background_title("https://www.gpvdm.com build configure, Roderick MacKenzie 2018")
@@ -116,7 +78,6 @@ while(1):
 		menu.append(("(systeminstall)", "Install/Remove gpvdm"))
 	else:
 		menu.append(("(compile)", "Compile gpvdm"))
-		menu.append(("(buildpackage)", "Build package"))
 
 	menu.append(("(about)", "About"))
 
@@ -125,7 +86,6 @@ while(1):
 	code, tag = d.menu("gpvdm build system:", choices=menu)
 	if code == d.OK:
 		if tag=="(publish)":
-			from publish_menu import publish_menu
 			publish_menu(d)
 
 		if tag=="(packages)":

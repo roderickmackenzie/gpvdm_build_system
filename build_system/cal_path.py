@@ -29,6 +29,12 @@ import sys
 import os
 #import shutil
 from pathlib import Path
+import os
+import platform
+
+package_path=None
+pub_path=None
+rpm_build_dir=None
 
 def subtract_paths(root,b_in):
 	a=root.replace("/","\\")
@@ -53,3 +59,50 @@ def subtract_paths(root,b_in):
 
 	return "/".join(ret)
 
+
+def get_ver():
+	f = open("./include/version.h", mode='rb')
+	lines = f.read()
+	f.close()
+
+	lines=lines.decode('utf-8')
+	lines=[str.strip() for str in lines.splitlines()]
+	ver=""
+	sub_ver=""
+	for l in lines:
+		if l.count("gpvdm_ver")>0:
+			ver=l.split()[2][1:-1]
+		if l.count("gpvdm_sub_ver")>0:
+			sub_ver=l.split()[2][1:-1]
+
+	return ver#,sub_ver
+
+def build_setup_paths():
+	global package_path
+	global pub_path
+	global rpm_build_dir
+
+	ret=platform.dist()
+	distro_name=ret[0]
+	os_numer=ret[1]
+	os_cute_name=ret[2].replace(" ","_")
+
+	distro=ret[0]+"_"+ret[1]
+	package_path=os.path.join(os.getcwd(),"package_lib",distro_name,os_numer+"_"+os_cute_name)
+	if os.path.isdir(package_path)==False:
+		os.makedirs(package_path)
+
+	pub_path=os.path.join(os.getcwd(),"pub")
+	rpm_build_dir=os.path.join(os.getcwd(),"rpm")
+
+def get_package_path():
+	global package_path
+	return package_path
+
+def get_pub_path():
+	global pub_path
+	return pub_path
+
+def get_rpm_build_dir():
+	global rpm_build_dir
+	return rpm_build_dir

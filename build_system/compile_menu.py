@@ -40,7 +40,6 @@ from make_m4 import make_m4
 
 from pathlib import Path
 from shutil import copyfile
-from to_web import publish_code_docs
 
 def test(d):
 	if d.yesno("Run gpvdm") == d.OK:
@@ -354,7 +353,7 @@ def compile_menu(d):
 			os.system("doxygen ./docs/doxygen_gui.config >../log.txt 2>../log.txt &")
 			os.system("doxygen ./docs/doxygen_core.config >../log.txt 2>../log.txt &")
 			ret=d.tailbox("log.txt", height=None, width=100)
-			publish_code_docs()
+			#publish_code_docs()
 			d.msgbox("Done")
 
 
