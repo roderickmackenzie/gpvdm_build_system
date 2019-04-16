@@ -39,7 +39,6 @@ import os.path
 import argparse
 import shutil
 from inp import inp_get_token_value
-from cp_gasses import copy_gasses
 from cal_path import subtract_paths
 from util import str2bool
 

@@ -34,8 +34,6 @@
 import sys
 
 sys.path.append('./build_system/')
-sys.path.append('./gpvdm_gui/gui/')
-sys.path.append('../gpvdm_gui/gui/')
 
 import os
 import locale
