@@ -25,7 +25,7 @@ dnf -y install zlib-devel libzip-devel libmatheval-devel suitesparse-devel opens
 dnf -y install texlive ghostscript ImageMagick mencoder valgrind @development-tools fedora-packager mingw32-gcc gnuplot
 
 
-dnf -y install python-crypto python-awake python3-qt5-devel python3-crypto python3-matplotlib-qt5 python3-openpyxl python3-pyopengl numpy notify-python python-inotify.noarch python-matplotlib python-inotify python-matplotlib
+dnf -y install python-crypto python-awake python3-qt5-devel python3-crypto python3-matplotlib-qt5 python3-openpyxl python3-pyopengl numpy notify-python python-inotify.noarch python-matplotlib python-inotify python-matplotlib python3-dialog
 
 dnf -y install indent unifdef indent libcurl-devel poedit ElectricFence kcachegrind help2man
 

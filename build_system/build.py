@@ -63,7 +63,8 @@ else:
 	except:
 		from menu import Dialog
 
-git_pull()
+if os.geteuid() != 0:
+	git_pull()
 
 # You may want to use 'autowidgetsize=True' here (requires pythondialog >= 3.1)
 d = Dialog(dialog="dialog")
@@ -76,6 +77,7 @@ while(1):
 	menu=[]
 
 	if os.geteuid() == 0:
+		menu.append(("(packages)", "Install dependencies to compile"))
 		menu.append(("(systeminstall)", "Install/Remove gpvdm"))
 	else:
 		menu.append(("(compile)", "Compile gpvdm"))

@@ -44,11 +44,32 @@ I would recommend downloading the binary from the gpvdm web page.  Double click 
 
 2. Linux
 --------
-For Linux you can either download an rpm/deb from the web page or compile from source.  I don't update the packages as often as I would like to so they often lag behind the windows version.  For this reason I recommend you install from source on Linux..
+For Linux I **recommend** you compile from source code.  I do provide some rpm/deb packages on the web page, but I don't update them very often, if you really want an RPM/DEB package let me know.
 
 2.1 Linux from source the easy way
 ----------------------------------
-Make sure you have python3-dialog installed on your system.  The issue the command ./build in the root directory of gpvdm.  Firstly select (packages) and let the installer install the packages needed to compile gpvdm.  Then select build and let the installer build gpvdm.  You can then exit the installer and run ./gpvdm.  Or if you wish to install gpvdm on your system, chooses install from the menu.
+Download the gpvdm build system by issuing the command 
+
+~~~~
+git clone  https://github.com/roderickmackenzie/gpvdm_build_system
+~~~~
+
+Make sure you have python3-dialog installed on your system, if you don't issue the commands:
+~~~~
+apt-get install python3-dialog
+~~~~
+
+~~~~
+yum install python3-dialog
+~~~~
+
+To start the build process, issue the command
+
+~~~~
+sudo./build
+~~~~
+
+in the directory gpvdm_build_system.  Firstly select (packages) and let the installer install the packages needed to compile gpvdm.  Then select build and let the installer build gpvdm.  You can then exit the installer and run ./gpvdm.  Or if you wish to install gpvdm on your system, chooses install from the menu.
 
 2.2 Linux from source the hard way
 ----------------------------------
