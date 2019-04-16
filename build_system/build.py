@@ -46,6 +46,7 @@ from cal_path import build_setup_paths
 from package_menu import package_menu
 from compile_menu import compile_menu
 from system_install import system_install_menu
+from git_pull import git_pull
 
 build_setup_paths()
 
@@ -62,6 +63,7 @@ else:
 	except:
 		from menu import Dialog
 
+git_pull()
 
 # You may want to use 'autowidgetsize=True' here (requires pythondialog >= 3.1)
 d = Dialog(dialog="dialog")
@@ -74,10 +76,10 @@ while(1):
 	menu=[]
 
 	if os.geteuid() == 0:
-		menu.append(("(packages)", "Install deb/rpm dependencies"))
 		menu.append(("(systeminstall)", "Install/Remove gpvdm"))
 	else:
 		menu.append(("(compile)", "Compile gpvdm"))
+		menu.append(("(packages)", "Install dependencies to compile"))
 
 	menu.append(("(about)", "About"))
 

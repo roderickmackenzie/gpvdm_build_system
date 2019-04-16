@@ -1,4 +1,3 @@
-#! /usr/bin/env python3
 # 
 # General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
@@ -31,86 +30,27 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
-import sys
-
-sys.path.append('./build_system/')
-
 import os
-import locale
-import argparse
-import platform
-
-
-from cal_path import build_setup_paths
-
-from package_menu import package_menu
-from compile_menu import compile_menu
-from system_install import system_install_menu
-from git_pull import git_pull
-
-build_setup_paths()
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--text", help="Text mode", action='store_true')
-
-args = parser.parse_args()
-
-if args.text:
+try:
+	from dialog import Dialog
+except:
 	from menu import Dialog
-else:
-	try:
-		from dialog import Dialog
-	except:
-		from menu import Dialog
-
-git_pull()
-
-# You may want to use 'autowidgetsize=True' here (requires pythondialog >= 3.1)
-d = Dialog(dialog="dialog")
-
-# Dialog.set_background_title() requires pythondialog 2.13 or later
-d.set_background_title("https://www.gpvdm.com build configure, Roderick MacKenzie 2018")
 
 
-while(1):
-	menu=[]
 
-	if os.geteuid() == 0:
-		menu.append(("(systeminstall)", "Install/Remove gpvdm"))
-	else:
-		menu.append(("(compile)", "Compile gpvdm"))
-		menu.append(("(packages)", "Install dependencies to compile"))
-
-	menu.append(("(about)", "About"))
-
-	menu.append(("(exit)", "Exit"))
-
-	code, tag = d.menu("gpvdm build system:", choices=menu)
-	if code == d.OK:
-		if tag=="(publish)":
-			publish_menu(d)
-
-		if tag=="(packages)":
-			package_menu(d)
-
-		if tag=="(compile)":
-			compile_menu(d)
-
-		if tag=="(systeminstall)":
-			system_install_menu(d)
+def git_pull():
+	if os.path.isdir("gpvdm_core")==False or os.path.isdir("gpvdm_gui")==False or os.path.isdir("gpvdm_data")==False:
+		#print()
+		a=input("Should I download the source code to gpvdm? [y/n]")
+		if a == "y":
+			os.system("git clone https://github.com/roderickmackenzie/gpvdm_core")
+			os.system("git clone https://github.com/roderickmackenzie/gpvdm_gui")
+			os.system("git clone https://github.com/roderickmackenzie/gpvdm_data")
+		else:
+			print("For me to compile the source code you need to download it first.")
+			exit()
 
 
-		if tag=="(buildpackage)":
-			buildpackage_menu(d)
-
-		if tag=="(about)":
-			d.msgbox("This is the gpvdm build system, use it to configure the build system, make, and install gpvdm. Copyright Roderick MacKenzie 2018.  Released under the GPL v2 license.")
 
 
-		if tag=="(exit)":
-			break
-
-		print(tag)
-	else:
-		break
 
