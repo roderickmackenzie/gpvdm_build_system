@@ -37,12 +37,13 @@ files.
 
 Installing/building gpvdm
 ==============
-1. Windows
+
+1 Windows
 ----------
 
 I would recommend downloading the binary from the gpvdm web page.  Double click on the installer and follow the instructions.
 
-2. Linux
+2 Linux
 --------
 For Linux I **recommend** you compile from source code.  I do provide some rpm/deb packages on the web page, but I don't update them very often, if you really want an RPM/DEB package let me know.
 
@@ -54,25 +55,38 @@ Download the gpvdm build system by issuing the command
 git clone  https://github.com/roderickmackenzie/gpvdm_build_system
 ~~~~
 
-Make sure you have python3-dialog installed on your system, if you don't issue the commands:
+Make sure you have python3-dialog installed on your system, if you don't issue the commands on a debian/ubuntu system:
 ~~~~
 apt-get install python3-dialog
 ~~~~
-
+or on a redhat/fedora/centos system
 ~~~~
 yum install python3-dialog
 ~~~~
 
-To start the build process, issue the command
+To start the build process, issue the commands
 
 ~~~~
-sudo./build
+cd gpvdm_build_system
+sudo ./build
 ~~~~
 
-in the directory gpvdm_build_system.  Firstly select (packages) and let the installer install the packages needed to compile gpvdm.  Then select build and let the installer build gpvdm.  You can then exit the installer and run ./gpvdm.  Or if you wish to install gpvdm on your system, chooses install from the menu.
+Firstly select (packages) and let the installer install the packages needed to compile gpvdm.  Once finished exit the installer and re-run ./gpvdm as a normal user.  It will prompt you to download the source code to gpvdm, just say yes to all questions.  Once the source code has downloaded, you will again be presented with a blue screen, select compile and answer yes to all questions.
 
 2.2 Linux from source the hard way
 ----------------------------------
+Gpvdm consists of four independent components:
+1. gpvdm_core: This is
+
+Download the components of gpvdm
+~~~~
+git clone  https://github.com/roderickmackenzie/gpvdm_build_system
+~~~~
+
+~~~~
+git clone  https://github.com/roderickmackenzie/gpvdm_build_system
+~~~~
+
 On Fedora install the following pacakges:
 dnf install zlib-devel libzip-devel libmatheval-devel suitesparse-devel openssl-devel gsl-devel libcurl-devel blas-devel librsvg2-tools texlive ghostscript ImageMagick mencoder valgrind @development-tools fedora-packager mingw32-gcc python-crypto python-awake python3-qt5-devel python3-crypto python3-matplotlib-qt5 python3-openpyxl python3-pyopengl numpy notify-python python-inotify.noarch python-matplotlib python-inotify python-matplotlib indent unifdef indent libcurl-devel poedit ElectricFence kcachegrind help2man
 
