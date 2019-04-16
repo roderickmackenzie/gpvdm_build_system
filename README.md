@@ -76,31 +76,42 @@ Firstly select (packages) and let the installer install the packages needed to c
 2.2 Linux from source the hard way
 ----------------------------------
 Gpvdm consists of four independent components:
-1. gpvdm_core: This is
+1. gpvdm_core: This is the core solver of gpvdm, which does all the complex math, written in C.
+2. gpvdm_gui: This is the GUI to gpvdm, you don't need to run the model, but it makes it much easier. It is written in python.
+3. gpvdm_data: This is a database of materials.
+4. gpvdm_build_system: This is used to build all the code.
 
 Download the components of gpvdm
 ~~~~
 git clone  https://github.com/roderickmackenzie/gpvdm_build_system
+cd gpvdm_build_system
 ~~~~
 
 ~~~~
-git clone  https://github.com/roderickmackenzie/gpvdm_build_system
+git clone  https://github.com/roderickmackenzie/gpvdm_core
+git clone  https://github.com/roderickmackenzie/gpvdm_gui
+git clone  https://github.com/roderickmackenzie/gpvdm_data
 ~~~~
 
-On Fedora install the following pacakges:
-dnf install zlib-devel libzip-devel libmatheval-devel suitesparse-devel openssl-devel gsl-devel libcurl-devel blas-devel librsvg2-tools texlive ghostscript ImageMagick mencoder valgrind @development-tools fedora-packager mingw32-gcc python-crypto python-awake python3-qt5-devel python3-crypto python3-matplotlib-qt5 python3-openpyxl python3-pyopengl numpy notify-python python-inotify.noarch python-matplotlib python-inotify python-matplotlib indent unifdef indent libcurl-devel poedit ElectricFence kcachegrind help2man
+You are now going to install the packages need by gpvdm to run, go to the directory:
+~~~~
+cd build_system/dependency_scripts
+~~~~
 
-Then configure the build the build system
+And find, the script relating to your distribution, and run it.  It will install all the packages needed by gpvdm to run.
+
+Issue the following commands in gpvdm_core, gpvdm_data, and gpvdm_gui
+
+~~~~
 aclocal
 automake --add-missing
 automake
 autoconf
-
-Then configure the build system:
 ./configure CPPFLAGS="-I/usr/include/suitesparse/"
-
-Then make the binary
 make
+~~~~
+
+You may have to replace /usr/include/suitesparse/ with a different path depending on your distro.  I know these instructions sound complex, which is the reason you use my build too.....  Any issues get back to me and I will fix them.
 
 Help using gpvdm
 ----------------
