@@ -129,7 +129,8 @@ More information can be found on the home page https://www.gpvdm.com
 Licensing
 ---------
 gpvdm comes in three parts with different licenses:
--gpvdm_core: This is licensed under a 3-clause BSD license.
--gpvdm_gui: This is licensed under a GPLv2 license.
--gpvdm_build_system: This is also licensed under a BSD 3-clause license
--gpvdm_data: Creative Commons BY-CC.
+- gpvdm_core: This is licensed under a 3-clause BSD license.
+- gpvdm_gui: This is licensed under a GPLv2 license.
+- gpvdm_build_system: This is also licensed under a BSD 3-clause license
+- gpvdm_data: Creative Commons BY-CC.
+See the individual license files for details.
