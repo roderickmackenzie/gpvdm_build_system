@@ -1,22 +1,19 @@
 gpvdm - Simulate Organic Solar Cells, Inorganic solar cells, OLEDs and OFETs
 ============================================================================
 
-Gpvdm is an organic solar cells model. It is specifically designed to 
-simulate bulk-heterojuncton organic solar cells, such as those based on the 
-P3HT:PCBM material system. The model contains both an electrical and an optical 
-solver, enabling both current/voltage characteristics to be simulated as well 
-as the optical modal profile within the device. The model and it's easy to use 
-graphical interface is available for both Linux and Windows.
+Gpvdm is a tool to simulate thin film optoelectronic devices including, organic solar cells, perovskite solar cells, thin film light emitting diodes and transistors.  The model contains 1/2D electrical and an optical 
+solvers, enabling both current/voltage characteristics to be simulated as well 
+as the optical properties of a device. The model and it's easy to use 
+graphical interface is available for both Linux and Windows, x86 and ARM.
 The model can simulate:
 
-    -Dark JV curves
-    -Light JV curves
-    -Dark CELIV transients
-    -Light CELIV transients
-    -Voltage transients of an arbitrary shape
-    -Full optical model taking into account reflection at interfaces and absorption.
-    -Calculation of reflection profile
-    -Ability to simulate OLEDs
+- Steady state measurements such as JV curves, and Suns-Voc
+- Transient measurements such as CELIV, Transient photo current measurements and Transient photocurrent measurements.
+- Full optical model taking into account reflection at interfaces and absorption.
+- Calculation of reflection profile
+- OLEDs
+- 2D OFETS
+- Fitting to experimental data
 
 The physical model solves both electron and hole drift-diffusion, and carrier 
 continuity equations in position space to describe the movement of charge 
@@ -26,7 +23,6 @@ described within the model using a Shockley-Read-Hall (SRH) formalism, the
 distribution of trap sates can be arbitrarily defined. A fuller description of 
 the model can be found in the at https://www.gpvdm.com, in the associated
 publications  and in the manual.
-Example simulations
 
 The model makes it easy to study the influence of material parameters such as 
 mobility, energetic disorder, doping and recombination cross-sections on device 
@@ -41,11 +37,11 @@ Installing/building gpvdm
 1 Windows
 ----------
 
-I would recommend downloading the binary from the gpvdm web page.  Double click on the installer and follow the instructions.
+I would recommend downloading the binary from the gpvdm web page.  Double click on the installer and follow the instructions.  I always keep the windows exe up-to date and on the latest stable release.
 
 2 Linux
 --------
-For Linux I **recommend** you compile from source code.  I do provide some rpm/deb packages on the web page, but I don't update them very often, if you really want an RPM/DEB package let me know.
+For Linux I **recommend** you compile from source code.  I do provide some rpm/deb packages on the web page, but I don't update them very often, if you really want an updated RPM/DEB package let me know.
 
 2.1 Linux from source the easy way
 ----------------------------------
@@ -55,38 +51,45 @@ Download the gpvdm build system by issuing the command
 git clone  https://github.com/roderickmackenzie/gpvdm_build_system
 ~~~~
 
-Make sure you have python3-dialog installed on your system, if you don't issue the commands on a debian/ubuntu system:
+Make sure you have python3-dialog installed on your system, if you don't issue the command:
 ~~~~
 apt-get install python3-dialog
 ~~~~
-or on a redhat/fedora/centos system
+on an Ubuntu/Debian system or 
 ~~~~
 yum install python3-dialog
 ~~~~
-
-To start the build process, issue the commands
+on a redhat/fedora/centos system.  To start the build process, issue the commands
 
 ~~~~
 cd gpvdm_build_system
 sudo ./build
 ~~~~
 
-Firstly select (packages) and let the installer install the packages needed to compile gpvdm.  Once finished exit the installer and re-run ./gpvdm as a normal user.  It will prompt you to download the source code to gpvdm, just say yes to all questions.  Once the source code has downloaded, you will again be presented with a blue screen, select compile and answer yes to all questions.
+Firstly select (packages) and let the installer install the dependencies needed to compile gpvdm.  Once finished exit the installer and re-run ./gpvdm as a normal user.  It will prompt you to download the source code to gpvdm, just say yes to all questions.  Once the source code has downloaded, you will again be presented with a blue screen, select compile and answer yes to all questions.  You should be left with a file called gpvdm, in the root build directory to run it type:
+
+~~~~
+./gpvdm
+~~~~
 
 2.2 Linux from source the hard way
 ----------------------------------
 Gpvdm consists of four independent components:
 1. gpvdm_core: This is the core solver of gpvdm, which does all the complex math, written in C.
-2. gpvdm_gui: This is the GUI to gpvdm, you don't need to run the model, but it makes it much easier. It is written in python.
-3. gpvdm_data: This is a database of materials.
+2. gpvdm_gui: This is the GUI to gpvdm, you don't need it to run the model, but it makes it much easier. It is written in python.
+3. gpvdm_data: This is a database of materials, light sources and documentation.
 4. gpvdm_build_system: This is used to build all the code.
 
-Download the components of gpvdm
+Download the the build system
 ~~~~
 git clone  https://github.com/roderickmackenzie/gpvdm_build_system
 cd gpvdm_build_system
 ~~~~
-
+enter the build directory
+~~~~
+cd gpvdm_build_system
+~~~~
+Get the rest of the source code
 ~~~~
 git clone  https://github.com/roderickmackenzie/gpvdm_core
 git clone  https://github.com/roderickmackenzie/gpvdm_gui
@@ -100,7 +103,7 @@ cd build_system/dependency_scripts
 
 And find, the script relating to your distribution, and run it.  It will install all the packages needed by gpvdm to run.
 
-Issue the following commands in gpvdm_core, gpvdm_data, and gpvdm_gui
+Issue the following commands in gpvdm_core, gpvdm_data, and gpvdm_gui in turn
 
 ~~~~
 aclocal
@@ -111,7 +114,7 @@ autoconf
 make
 ~~~~
 
-You may have to replace /usr/include/suitesparse/ with a different path depending on your distro.  I know these instructions sound complex, which is the reason you use my build too.....  Any issues get back to me and I will fix them.
+You may have to replace /usr/include/suitesparse/ with a different path depending on your distro.  I know these instructions sound complex, which is the reason I suggest you use my build tool.....  Any issues get back to me and I will fix them.
 
 Help using gpvdm
 ----------------
@@ -125,5 +128,8 @@ More information can be found on the home page https://www.gpvdm.com
 
 Licensing
 ---------
-gpvdm comes in two parts, gpvdm_core and gpvdm_gui.  They are independent programs, gpvdm_core is licensed under the 3-clause BSD license, gpvdm_gui is licensed under the GPL v2.
-
+gpvdm comes in three parts with different licenses:
+-gpvdm_core: This is licensed under a 3-clause BSD license.
+-gpvdm_gui: This is licensed under a GPLv2 license.
+-gpvdm_build_system: This is also licensed under a BSD 3-clause license
+-gpvdm_data: Creative Commons BY-CC.
