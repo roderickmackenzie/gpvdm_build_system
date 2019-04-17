@@ -1,9 +1,9 @@
 Licensing
 =========
 
-gpvdm comes in three parts with different licenses:
+gpvdm comes in four independent parts each with a different license.
 
-- gpvdm_core: This is licensed under a 3-clause BSD license.
+- gpvdm_core: This is the mathematical core of the model, it can be used as a stand alone application. It is licensed under a 3-clause BSD license.
 ~~~~
 Copyright (c) 2012-2019, Roderick C. I. MacKenzie
 All rights reserved.
@@ -34,7 +34,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ~~~~
 
-- gpvdm_gui: This is licensed under a GPLv2 license.
+- gpvdm_gui: This is a graphical interface to the model, it can again be used as a stand alone program. It is licensed under a GPLv2.
 ~~~~
   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
   model for 1st, 2nd and 3rd generation solar cells.
@@ -57,7 +57,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ~~~~
 
-- gpvdm_build_system: This is also licensed under a BSD 3-clause license
+- gpvdm_build_system: This is a build system to make it easy to build gpvdm.  Strictly it is not needed to build gpvdm, but makes it faster.  It is licensed under a BSD 3-clause license.
 ~~~~
 Copyright (c) 2012-2019, Roderick C. I. MacKenzie
 All rights reserved.
