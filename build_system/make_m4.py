@@ -49,7 +49,8 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 
 	config_files.append("")
 
-	config_files.append("lang")
+	if os.path.isdir(os.path.join(path,"lang")):
+		config_files.append("lang")
 
 	config_files.append("libi")
 	link_libs=link_libs+" -lgpvdm_i"
