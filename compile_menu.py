@@ -123,6 +123,20 @@ def configure_for_ubuntu(d):
 	os.system("cd gpvdm_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
+def configure_for_ubuntu_with_flat_install(d):
+	make_m4(hpc=False, win=False,usear=True)
+
+	build_configure_all()
+
+	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\"  --enable-noplots --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/   >../log.txt 2>../log.txt &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd gpvdm_gui;./configure  --enable-nodesktop --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/  &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd gpvdm_data;./configure  --docdir=/ --datadir=/ --bindir=/  --libdir=/ &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
 def configure_for_centos_hpc(d):
 	make_m4(hpc=True, win=False,usear=False)
 
@@ -182,7 +196,7 @@ def configure_for_windows(d):
 	os.system("cd gpvdm_gui;./configure --enable-nodesktop --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/ &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure &>../log.txt  &")
+	os.system("cd gpvdm_data;./configure --docdir=/ --datadir=/ --bindir=/  --libdir=/ &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_autodetect(d):
@@ -226,6 +240,7 @@ def select_distro_menu(d):
 								("(centos)", "CENTOS (x86_64)"),
 								("(mint)", "Mint (x86_64)"),
 								("(ubuntu)", "Ubuntu (x86_64)"),
+								("(ubuntu_flat)", "Ubuntu flat install dir (x86_64)"),
 								("(suse)", "Open Suse (x86_64)"),
 								("(arch)", "Arch (x86_64)"),
 								("(debian-i386)","Debian (i386)"),
@@ -295,6 +310,11 @@ def select_distro_menu(d):
 
 		if tag=="(ubuntu)":
 			configure_for_ubuntu(d)
+			make_all(d)
+			d.msgbox("Built")
+
+		if tag=="(ubuntu_flat)":
+			configure_for_ubuntu_with_flat_install(d)
 			make_all(d)
 			d.msgbox("Built")
 

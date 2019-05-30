@@ -57,8 +57,8 @@ class Dialog():
 
 	def yesno(self,text):
 		#self.clear()
-		n=input(text+" (y/n)")
-		if n=="y":
+		n=input(text+" (y/n) [y]")
+		if n=="y" or n=="":
 			return self.OK
 		return self.cancel
 
@@ -77,8 +77,11 @@ class Dialog():
 
 		code=self.OK
 
-		n=input('Enter your input:')	
-		n=int(n)
+		n=input('Enter your input: [0]')
+		if n!="":
+			n=int(n)
+		else:
+			n=0	
 		tag=choices[n][0]	
 		return code, tag
 

@@ -20,13 +20,13 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 
-apt-get -y install indent unifdef libsuitesparse-dev libssl-dev libedbus-dev libzip-dev libgsl-dev libmatheval-dev help2man pluma build-essential imagemagick license-reconcile autoconf librsvg2-bin zip
+apt-get -y install indent unifdef libsuitesparse-dev libssl-dev libedbus-dev libzip-dev libgsl-dev libmatheval-dev help2man pluma build-essential imagemagick license-reconcile autoconf librsvg2-bin zip libsuperlu-dev
 
 
 apt-get -y install rsync pluma build-essential imagemagick license-reconcile autoconf python-bashate codespell apt-file gettext-lint inkscape pep8 i18nspector gettext git texlive-latex-recommended latex2html
 
 
-apt-get -y install python3-numpy python3 python3-matplotlib python3-pyqt5 python3-pyqt5.qtopengl python3-opengl python3-numpy python3-crypto python3-dbus.mainloop.pyqt5 python3-psutil
+apt-get -y install python3-numpy python3 python3-matplotlib python3-pyqt5 python3-pyqt5.qtopengl python3-opengl python3-numpy python3-crypto python3-dbus.mainloop.pyqt5 python3-psutil python3-openpyxl
 
 apt-get -y install gnuplot
 

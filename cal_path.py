@@ -61,7 +61,7 @@ def subtract_paths(root,b_in):
 
 
 def get_ver():
-	f = open("./include/version.h", mode='rb')
+	f = open("./gpvdm_core/include/version.h", mode='rb')
 	lines = f.read()
 	f.close()
 
