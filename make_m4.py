@@ -61,6 +61,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("libshape")
 	link_libs=link_libs+" -lgpvdm_shape"
 
+	config_files.append("libemission")
+	link_libs=link_libs+" -lgpvdm_emission"
+
 	config_files.append("libmemory")
 	link_libs=link_libs+" -lgpvdm_memory"
 
