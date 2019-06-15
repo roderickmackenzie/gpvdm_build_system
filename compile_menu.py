@@ -114,7 +114,7 @@ def configure_for_ubuntu(d):
 
 	build_configure_all()
 
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
+	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	os.system("cd gpvdm_gui;./configure &>../log.txt  &")

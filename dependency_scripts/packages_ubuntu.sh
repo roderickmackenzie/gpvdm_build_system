@@ -21,7 +21,7 @@
 
 #Tested in Ubuntu 18.04
 
-apt-get -y install libsuitesparse-dev indent unifdef libsuitesparse-dev libssl-dev libedbus-dev libzip-dev libgsl-dev libmatheval-dev help2man pluma build-essential imagemagick license-reconcile autoconf codespell librsvg2-bin gnuplot
+apt-get -y install libsuitesparse-dev indent unifdef libsuitesparse-dev libssl-dev libedbus-dev libzip-dev libgsl-dev libmatheval-dev help2man pluma build-essential imagemagick license-reconcile autoconf codespell librsvg2-bin gnuplot libsuperlu-dev
 
 apt-get -y install rsync pluma build-essential imagemagick imagemagick license-reconcile autoconf python-bashate codespell complexity apt-file gettext-lint gettext-lint inkscape pep8 i18nspector python-bashate automake pbuilder python3-dev
 
