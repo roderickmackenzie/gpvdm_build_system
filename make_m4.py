@@ -76,6 +76,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("libray")
 	link_libs=link_libs+" -lgpvdm_ray"
 
+	config_files.append("libcolor")
+	link_libs=link_libs+" -lgpvdm_color"
+
 	config_files.append("libmeasure")
 	link_libs=link_libs+" -lgpvdm_measure"
 
