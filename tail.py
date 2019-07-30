@@ -63,12 +63,14 @@ def tail(fname):
 				f.seek(p+len(r))
 				r=re.sub(r'[^\x00-\x7F]+',' ', r)
 				print(r, end='', flush=True)
+				if r.count("gpvdm_build_finished")>0:
+					break
 				p = f.tell()
 			f.close()
 
 		time.sleep(0.05) 
 		if os.path.isfile(fname)==True:
-			if (time.time() - mod_time)>2:
+			if (time.time() - mod_time)>10.0:
 				print("tail finished..")
 				break
 		else:

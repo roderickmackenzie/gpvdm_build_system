@@ -243,7 +243,7 @@ def make_m4_data(path,hpc=False, win=False,usear=False):
 
 	config_files.append("")
 
-	config_files.append("docs/man")
+	#config_files.append("docs/man")
 	config_files.append("lang")
 
 	f = open(os.path.join(path,"config_files.m4"), "w")
