@@ -196,6 +196,7 @@ def make_m4_gui(path,hpc=False, win=False,usear=False):
 
 		config_files.append("css")
 		config_files.append("html")
+		config_files.append("video")
 		if os.path.isdir(os.path.join(path,"desktop")):
 			config_files.append("desktop")
 
