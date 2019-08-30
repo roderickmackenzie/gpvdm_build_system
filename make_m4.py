@@ -55,14 +55,18 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("libi")
 	link_libs=link_libs+" -lgpvdm_i"
 
+	config_files.append("libbasicmath")
+	link_libs=link_libs+" -lgpvdm_basicmath"
+
 	config_files.append("librpn")
 	link_libs=link_libs+" -lgpvdm_rpn"
 
 	config_files.append("libshape")
 	link_libs=link_libs+" -lgpvdm_shape"
 
-	config_files.append("libemission")
-	link_libs=link_libs+" -lgpvdm_emission"
+	if os.path.isdir(os.path.join(path,"libemission")):
+		config_files.append("libemission")
+		link_libs=link_libs+" -lgpvdm_emission"
 
 	config_files.append("libmemory")
 	link_libs=link_libs+" -lgpvdm_memory"
@@ -73,8 +77,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("liblight")
 	link_libs=link_libs+" -lgpvdm_light"
 
-	config_files.append("libray")
-	link_libs=link_libs+" -lgpvdm_ray"
+	if os.path.isdir(os.path.join(path,"libray")):
+		config_files.append("libray")
+		link_libs=link_libs+" -lgpvdm_ray"
 
 	config_files.append("libcolor")
 	link_libs=link_libs+" -lgpvdm_color"
@@ -94,8 +99,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("libdumpctrl")
 	link_libs=link_libs+" -lgpvdm_dumpctrl"
 
-	config_files.append("libserver")
-	link_libs=link_libs+" -lgpvdm_server"
+	if os.path.isdir(os.path.join(path,"libserver")):
+		config_files.append("libserver")
+		link_libs=link_libs+" -lgpvdm_server"
 
 	config_files.append("libmesh")
 	link_libs=link_libs+" -lgpvdm_mesh"
