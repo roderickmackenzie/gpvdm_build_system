@@ -21,16 +21,31 @@
 
 #Tested in Ubuntu 18.04
 
+#build system
+apt-get install python3-dialog
+
+
 apt-get -y install libsuitesparse-dev indent unifdef libsuitesparse-dev libssl-dev libedbus-dev libzip-dev libgsl-dev libmatheval-dev help2man pluma build-essential imagemagick license-reconcile autoconf codespell librsvg2-bin gnuplot libsuperlu-dev
 
 apt-get -y install rsync pluma build-essential imagemagick imagemagick license-reconcile autoconf python-bashate codespell complexity apt-file gettext-lint gettext-lint inkscape pep8 i18nspector python-bashate automake pbuilder python3-dev
 
 
-python3 python3-matplotlib python3-pyqt5.qtopengl python3-opengl python3-numpy python3-crypto python3-dbus.mainloop.pyqt5 python3-psutil python3-dateutil
+apt-get -y install python3 python3-matplotlib l python3-opengl python3-numpy python3-crypto python3-dbus.mainloop.pyqt5 python3-psutil python3-dateutil
+
+ 
+apt-get -y install python3-pyqt5.qtmultimedia python3-pyqt5.qtopeng
 
 
 apt-get -y install dh-virtualenv debhelper texlive 
 
-
+#because ubuntu seems odd
+apt-get install python3-pip
+pip3 install --upgrade PyOpenGL
+pip3 install --upgrade numpy
+pip3 install --upgrade matplotlib
+pip3 install pyopengl
+pip3 install pydbus
+pip3 install dbus-python
+pip3 install pyqt5
 
 echo "Done"
