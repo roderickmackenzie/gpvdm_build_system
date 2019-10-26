@@ -37,6 +37,7 @@ apt-get -y install python3-pyqt5.qtmultimedia python3-pyqt5.qtopeng
 
 
 apt-get -y install dh-virtualenv debhelper texlive 
+apt-get -y install mencoder
 
 #because ubuntu seems odd
 apt-get install python3-pip
