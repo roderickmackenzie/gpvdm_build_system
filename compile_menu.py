@@ -86,7 +86,8 @@ def configure_for_fedora(d):
 	make_m4(hpc=False, win=False,usear=True)
 	#d.infobox("aclocal", width=0, height=0, title="configure")
 	build_configure_all()
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/suitesparse/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" &>../log.txt  &")
+	mpi_include="-I/usr/include/openmpi-x86_64/ -I/usr/include/MUMPS/ -L/usr/lib64/openmpi/lib/"
+	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/suitesparse/ "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
@@ -113,8 +114,8 @@ def configure_for_ubuntu(d):
 	make_m4(hpc=False, win=False,usear=True)
 
 	build_configure_all()
-
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
+	mpi_include="-I/usr/lib/x86_64-linux-gnu/openmpi/include/ -L/usr/lib64/openmpi/lib/"
+	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	os.system("cd gpvdm_gui;./configure &>../log.txt  &")

@@ -49,4 +49,12 @@ pip3 install pydbus
 pip3 install dbus-python
 pip3 install pyqt5
 
+#mpi/mumps
+apt-get install libopenmpi-dev libopenmpi2
+apt-get install libmumps-dev
+
+#apt-get install libopenblas-base for paralel blas
+
+#debug
+apt-get install electric-fence
 echo "Done"

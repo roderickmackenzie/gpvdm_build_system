@@ -30,6 +30,8 @@ apt-get -y install python3-numpy python3 python3-matplotlib python3-pyqt5 python
 
 apt-get -y install gnuplot
 
+apt-get -y install python3-pyqt5.qtmultimedia python3-pyqt5.qtopeng
+
 #build enviroment
 apt-get -y install octave gnuplot rlwrap
 echo "Done"

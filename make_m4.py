@@ -58,6 +58,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("libbasicmath")
 	link_libs=link_libs+" -lgpvdm_basicmath"
 
+	config_files.append("libfxdomain")
+	link_libs=link_libs+" -lgpvdm_fxdomain"
+
 	config_files.append("librpn")
 	link_libs=link_libs+" -lgpvdm_rpn"
 
@@ -99,6 +102,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("libdumpctrl")
 	link_libs=link_libs+" -lgpvdm_dumpctrl"
 
+	config_files.append("libdevice")
+	link_libs=link_libs+" -lgpvdm_device"
+
 	if os.path.isdir(os.path.join(path,"libserver")):
 		config_files.append("libserver")
 		link_libs=link_libs+" -lgpvdm_server"
@@ -128,6 +134,14 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	if os.path.isdir(os.path.join(path,"liblock")):
 		config_files.append("liblock")
 		link_libs=link_libs+" -lgpvdm_lock"
+
+	if os.path.isdir(os.path.join(path,"libcircuit")):
+		config_files.append("libcircuit")
+		link_libs=link_libs+" -lgpvdm_circuit"
+
+
+	if win==False:
+		config_files.append("mumps")
 
 	for root, dirs, files in os.walk(os.path.join(path,"plugins")):
 		for file in files:
