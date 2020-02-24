@@ -55,6 +55,6 @@ apt-get install libmumps-dev
 
 #apt-get install libopenblas-base for paralel blas
 
-#debug
-apt-get install electric-fence
+#debug tools
+apt-get install electric-fence kdiff3
 echo "Done"

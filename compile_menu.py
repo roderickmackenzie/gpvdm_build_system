@@ -115,7 +115,7 @@ def configure_for_ubuntu(d):
 
 	build_configure_all()
 	mpi_include="-I/usr/lib/x86_64-linux-gnu/openmpi/include/ -L/usr/lib64/openmpi/lib/"
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
+	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ LDFLAGS=\"-lumfpack\" "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	os.system("cd gpvdm_gui;./configure &>../log.txt  &")

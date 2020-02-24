@@ -80,6 +80,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	config_files.append("liblight")
 	link_libs=link_libs+" -lgpvdm_light"
 
+	config_files.append("libheat")
+	link_libs=link_libs+" -lgpvdm_heat"
+
 	if os.path.isdir(os.path.join(path,"libray")):
 		config_files.append("libray")
 		link_libs=link_libs+" -lgpvdm_ray"
@@ -215,6 +218,7 @@ def make_m4_gui(path,hpc=False, win=False,usear=False):
 		config_files.append("images/icons/512x512")
 
 		config_files.append("css")
+		config_files.append("scripts")
 		config_files.append("html")
 		config_files.append("video")
 		if os.path.isdir(os.path.join(path,"desktop")):
