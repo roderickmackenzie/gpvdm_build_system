@@ -45,6 +45,7 @@ def make_m4(hpc=False, win=False,usear=False):
 def make_m4_core(path,hpc=False, win=False,usear=False):
 	path=os.path.join(path,"gpvdm_core")
 	config_files=[]
+	gpvdm_lib=[]
 	link_libs=""
 
 	config_files.append("")
@@ -53,106 +54,145 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 		config_files.append("lang")
 
 	config_files.append("libi")
-	link_libs=link_libs+" -lgpvdm_i"
+	#link_libs=link_libs+" -lgpvdm_i"
+	gpvdm_lib.append("libi")
 
 	config_files.append("libbasicmath")
-	link_libs=link_libs+" -lgpvdm_basicmath"
+	#link_libs=link_libs+" -lgpvdm_basicmath"
+	gpvdm_lib.append("libbasicmath")
 
-	config_files.append("libfxdomain")
-	link_libs=link_libs+" -lgpvdm_fxdomain"
+	if os.path.isdir(os.path.join(path,"libfxdomain")):
+		config_files.append("libfxdomain")
+		#link_libs=link_libs+" -lgpvdm_fxdomain"
+		gpvdm_lib.append("libfxdomain")
 
 	config_files.append("librpn")
-	link_libs=link_libs+" -lgpvdm_rpn"
+	#link_libs=link_libs+" -lgpvdm_rpn"
+	gpvdm_lib.append("librpn")
 
 	config_files.append("libshape")
-	link_libs=link_libs+" -lgpvdm_shape"
+	#link_libs=link_libs+" -lgpvdm_shape"
+	gpvdm_lib.append("libshape")
 
 	if os.path.isdir(os.path.join(path,"libemission")):
 		config_files.append("libemission")
-		link_libs=link_libs+" -lgpvdm_emission"
+		#link_libs=link_libs+" -lgpvdm_emission"
+		gpvdm_lib.append("libemission")
 
 	config_files.append("libmemory")
-	link_libs=link_libs+" -lgpvdm_memory"
+	#link_libs=link_libs+" -lgpvdm_memory"
+	gpvdm_lib.append("libmemory")
 
 	config_files.append("libdos")
-	link_libs=link_libs+" -lgpvdm_dos"
+	#link_libs=link_libs+" -lgpvdm_dos"
+	gpvdm_lib.append("libdos")
 
 	config_files.append("liblight")
-	link_libs=link_libs+" -lgpvdm_light"
+	#link_libs=link_libs+" -lgpvdm_light"
+	gpvdm_lib.append("liblight")
 
 	config_files.append("libheat")
-	link_libs=link_libs+" -lgpvdm_heat"
+	#link_libs=link_libs+" -lgpvdm_heat"
+	gpvdm_lib.append("libheat")
 
 	if os.path.isdir(os.path.join(path,"libray")):
 		config_files.append("libray")
-		link_libs=link_libs+" -lgpvdm_ray"
+		#link_libs=link_libs+" -lgpvdm_ray"
+		gpvdm_lib.append("libray")
 
 	config_files.append("libcolor")
-	link_libs=link_libs+" -lgpvdm_color"
+	#link_libs=link_libs+" -lgpvdm_color"
+	gpvdm_lib.append("libcolor")
 
 	config_files.append("libmeasure")
-	link_libs=link_libs+" -lgpvdm_measure"
+	#link_libs=link_libs+" -lgpvdm_measure"
+	gpvdm_lib.append("libmeasure")
 
 	config_files.append("libcontacts")
-	link_libs=link_libs+" -lgpvdm_contacts"
+	#link_libs=link_libs+" -lgpvdm_contacts"
+	gpvdm_lib.append("libcontacts")
 
 	config_files.append("lib")
-	link_libs=link_libs+" -lgpvdm_lib"
+	#link_libs=link_libs+" -lgpvdm_lib"
+	gpvdm_lib.append("lib")
 
 	config_files.append("libdump")
-	link_libs=link_libs+" -lgpvdm_dump"
+	#link_libs=link_libs+" -lgpvdm_dump"
+	gpvdm_lib.append("libdump")
 
 	config_files.append("libdumpctrl")
-	link_libs=link_libs+" -lgpvdm_dumpctrl"
+	#link_libs=link_libs+" -lgpvdm_dumpctrl"
+	gpvdm_lib.append("libdumpctrl")
 
 	config_files.append("libdevice")
-	link_libs=link_libs+" -lgpvdm_device"
+	#link_libs=link_libs+" -lgpvdm_device"
+	gpvdm_lib.append("libdevice")
 
 	if os.path.isdir(os.path.join(path,"libserver")):
 		config_files.append("libserver")
 		link_libs=link_libs+" -lgpvdm_server"
+		#gpvdm_lib.append("libserver")
 
 	config_files.append("libmesh")
-	link_libs=link_libs+" -lgpvdm_mesh"
+	#link_libs=link_libs+" -lgpvdm_mesh"
+	gpvdm_lib.append("libmesh")
 
 	if os.path.isdir(os.path.join(path,"libperovskite")):
 		config_files.append("libperovskite")
-		link_libs=link_libs+" -lgpvdm_perovskite"
+		#link_libs=link_libs+" -lgpvdm_perovskite"
+		gpvdm_lib.append("libperovskite")
 
 	config_files.append("libnewtontricks")
-	link_libs=link_libs+" -lgpvdm_newtontricks"
+	#link_libs=link_libs+" -lgpvdm_newtontricks"
+	gpvdm_lib.append("libnewtontricks")
 
 	if os.path.isdir(os.path.join(path,"libfit")):
 		config_files.append("libfit")
 		link_libs=link_libs+" -lgpvdm_fit"
+		#gpvdm_lib.append("libfit")
 
 	if os.path.isdir(os.path.join(path,"libsimplex")):
 		config_files.append("libsimplex")
-		link_libs=link_libs+" -lgpvdm_simplex"
+		#link_libs=link_libs+" -lgpvdm_simplex"
+		gpvdm_lib.append("libsimplex")
 
 	if os.path.isdir(os.path.join(path,"libfdtd")):
 		config_files.append("libfdtd")
-		link_libs=link_libs+" -lgpvdm_fdtd"
+		#link_libs=link_libs+" -lgpvdm_fdtd"
+		gpvdm_lib.append("libfdtd")
 
 	if os.path.isdir(os.path.join(path,"liblock")):
 		config_files.append("liblock")
-		link_libs=link_libs+" -lgpvdm_lock"
+		#link_libs=link_libs+" -lgpvdm_lock"
+		gpvdm_lib.append("liblock")
 
 	if os.path.isdir(os.path.join(path,"libcircuit")):
 		config_files.append("libcircuit")
-		link_libs=link_libs+" -lgpvdm_circuit"
-
+		#link_libs=link_libs+" -lgpvdm_circuit"
+		gpvdm_lib.append("libcircuit")
 
 	if win==False:
 		config_files.append("mumps")
+
+	link_libs=link_libs+" -lgpvdm_core"
+
+	config_files.append("src")
 
 	for root, dirs, files in os.walk(os.path.join(path,"plugins")):
 		for file in files:
 			if file.endswith("Makefile.am"):
 				name=os.path.join(root, file)[len(path)+1:-12]
 				config_files.append(name)
+	if win==True:
+		try:
+			config_files.remove("plugins/external_solver")
+		except:
+			pass
 
-	config_files.append("src")
+		try:
+			config_files.remove("plugins/superlu")
+		except:
+			pass
 
 	if hpc==False:
 		config_files.append("cluster_")
@@ -178,6 +218,7 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 	f.close()
 
 
+
 	f = open(os.path.join(path,"local_link.m4"), "w")
 	f.write( "AC_SUBST(LOCAL_LINK,\"")
 	f.write(link_libs)
@@ -194,6 +235,14 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 
 	f.close()
 
+
+	f = open(os.path.join(path,"gpvdm_core_lib.m4"), "w")
+	f.write( "AC_SUBST(GPVDM_CORE_LIB_FILES,\"")
+	for file_name in gpvdm_lib:
+		f.write("../"+file_name+"/*.o ")
+	f.write("\")")
+
+	f.close()
 
 def make_m4_gui(path,hpc=False, win=False,usear=False):
 	path=os.path.join(path,"gpvdm_gui")

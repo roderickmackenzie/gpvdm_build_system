@@ -30,7 +30,6 @@ import os
 #import shutil
 from pathlib import Path
 import os
-import platform
 
 package_path=None
 pub_path=None
@@ -81,8 +80,8 @@ def build_setup_paths():
 	global package_path
 	global pub_path
 	global rpm_build_dir
-
-	ret=platform.dist()
+	import distro
+	ret=distro.linux_distribution(full_distribution_name=False)
 	distro_name=ret[0]
 	os_numer=ret[1]
 	os_cute_name=ret[2].replace(" ","_")

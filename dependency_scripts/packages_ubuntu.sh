@@ -25,9 +25,9 @@
 apt-get install python3-dialog
 
 
-apt-get -y install libsuitesparse-dev indent unifdef libsuitesparse-dev libssl-dev libedbus-dev libzip-dev libgsl-dev libmatheval-dev help2man pluma build-essential imagemagick license-reconcile autoconf codespell librsvg2-bin gnuplot libsuperlu-dev
+apt-get -y install libsuitesparse-dev indent unifdef libsuitesparse-dev libssl-dev  libzip-dev libgsl-dev libmatheval-dev pluma build-essential  autoconf codespell librsvg2-bin gnuplot libsuperlu-dev
 
-apt-get -y install rsync pluma build-essential imagemagick imagemagick license-reconcile autoconf python-bashate codespell complexity apt-file gettext-lint gettext-lint inkscape pep8 i18nspector python-bashate automake pbuilder python3-dev
+apt-get -y install rsync pluma build-essential autoconf python-bashate codespell complexity apt-file gettext-lint gettext-lint inkscape pep8 i18nspector python-bashate automake pbuilder python3-dev
 
 
 apt-get -y install python3 python3-matplotlib l python3-opengl python3-numpy python3-crypto python3-dbus.mainloop.pyqt5 python3-psutil python3-dateutil
@@ -35,10 +35,17 @@ apt-get -y install python3 python3-matplotlib l python3-opengl python3-numpy pyt
  
 apt-get -y install python3-pyqt5.qtmultimedia python3-pyqt5.qtopeng
 
-
+#removed
+#libedbus-dev
+apt-get install libdbus-1-dev
 apt-get -y install dh-virtualenv debhelper texlive 
 apt-get -y install mencoder
-
+apt-get install libzip-dev
+apt-get install help2man
+apt-get install gettext
+apt-get install imagemagick
+apt-get install license-reconcile
+apt-get install libcurl4-openssl-dev
 #because ubuntu seems odd
 apt-get install python3-pip
 pip3 install --upgrade PyOpenGL
@@ -57,4 +64,5 @@ apt-get install libmumps-dev
 
 #debug tools
 apt-get install electric-fence kdiff3
+apt-get install valgrind kcachegrind graphviz
 echo "Done"

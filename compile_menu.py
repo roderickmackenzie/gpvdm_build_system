@@ -115,7 +115,9 @@ def configure_for_ubuntu(d):
 
 	build_configure_all()
 	mpi_include="-I/usr/lib/x86_64-linux-gnu/openmpi/include/ -L/usr/lib64/openmpi/lib/"
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ LDFLAGS=\"-lumfpack\" "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
+	command="cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ -I/usr/include/dbus-1.0/\" LDFLAGS=\"-lumfpack "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &"
+	print(command)
+	os.system(command)
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
@@ -206,8 +208,8 @@ def configure_for_windows(d):
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_autodetect(d):
-	import platform
-	plat=platform.dist()[0].lower()
+	import distro
+	plat=distro.linux_distribution(full_distribution_name=False)[0].lower()
 	chipset=os.uname().machine
 	configured=False
 	if d.yesno("Configure for "+plat+" "+chipset) == d.CANCEL:
