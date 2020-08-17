@@ -41,6 +41,16 @@ from make_m4 import make_m4
 from pathlib import Path
 from shutil import copyfile
 
+def write_includes(dbus=None,umfpack=None):
+	if dbus==None:
+		dbus="-I/usr/include/dbus-1.0/ `pkg-config --cflags dbus-1` -D dbus"
+	f = open(os.path.join("gpvdm_core","includes.m4"), "w")
+	f.write( "AC_SUBST(I_DBUS,\"")
+	f.write(dbus)
+	f.write("\")")
+
+	f.close()
+
 def test(d):
 	if d.yesno("Run gpvdm") == d.OK:
 		os.system("./go.o  >log.txt 2>log.txt &")
@@ -112,10 +122,11 @@ def configure_for_debian(d):
 
 def configure_for_ubuntu(d):
 	make_m4(hpc=False, win=False,usear=True)
-
+	write_includes()
 	build_configure_all()
+
 	mpi_include="-I/usr/lib/x86_64-linux-gnu/openmpi/include/ -L/usr/lib64/openmpi/lib/"
-	command="cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ -I/usr/include/dbus-1.0/\" LDFLAGS=\"-lumfpack "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &"
+	command="cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ \" LDFLAGS=\"-lumfpack "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &"
 	print(command)
 	os.system(command)
 	et=d.tailbox("log.txt", height=None, width=100)
@@ -191,7 +202,7 @@ def configure_for_arch(d):
 
 def configure_for_windows(d):
 	make_m4(hpc=False, win=True,usear=True)
-
+	write_includes(dbus="")
 	build_configure_all()
 
 	home=str(Path.home())

@@ -130,8 +130,8 @@ def make_m4_core(path,hpc=False, win=False,usear=False):
 
 	if os.path.isdir(os.path.join(path,"libserver")):
 		config_files.append("libserver")
-		link_libs=link_libs+" -lgpvdm_server"
-		#gpvdm_lib.append("libserver")
+		#link_libs=link_libs+" -lgpvdm_server"
+		gpvdm_lib.append("libserver")
 
 	config_files.append("libmesh")
 	#link_libs=link_libs+" -lgpvdm_mesh"
@@ -269,6 +269,7 @@ def make_m4_gui(path,hpc=False, win=False,usear=False):
 		config_files.append("css")
 		config_files.append("scripts")
 		config_files.append("html")
+		config_files.append("bib")
 		config_files.append("video")
 		if os.path.isdir(os.path.join(path,"desktop")):
 			config_files.append("desktop")
